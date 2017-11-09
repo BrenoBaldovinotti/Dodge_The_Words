@@ -1,0 +1,95 @@
+@import url(https://fonts.googleapis.com/css?family=Rye);
+@import url("animate.css");
+body {
+  background:lightblue;
+  
+}
+
+* {
+  font-family: 'Rye', cursive;
+  -webkit-user-select: none;  
+  -moz-user-select: none;    
+  -ms-user-select: none;      
+  user-select: none;
+}
+
+.container {
+    position: relative;
+    top: 15%;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 20px; 
+  border-style: dashed;
+}
+
+.page-title  h1 {
+  font-size: 6.5em;
+  padding: 0.1em;
+}
+
+.buttons-box{
+  font-size: 2em;
+  position: relative;
+  top: 40%;
+}
+
+.menu-button {
+  display: block;
+  font-size: 1em;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  width: 100%;
+  margin: 0.5em 0;
+  padding: 0.2em 0;
+  background-image: url("../imgs/plank.jpg");
+  color: #fff;
+  text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+  box-shadow: 3px 3px 3px #666666;
+  border-radius: 10px;
+}
+
+.menu-button:hover {
+  text-decoration: none;
+}
+
+
+.menu-button:hover{
+
+  background-color: rgb(177, 127, 46);
+  color: #fff;
+  transform: rotate(-3deg);
+}
+
+.arrow-left {
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent; 
+  
+  border-right:10px solid blue; 
+}
+
+#animatedBackground {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url("../imgs/background_grass.png");  
+  background-repeat: repeat;
+  background-position: 0 0;
+  background-size: auto 100%;
+  animation: animatedBackground 500s linear infinite;
+}
+
+@keyframes animatedBackground {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -10000px 0;
+  }
+}
