@@ -1,16 +1,23 @@
 
-var palavras = ["Quatro","Urso","Universidade","Forquilha","Insurreição","Paralelepípedo","Maçã","Enfeitiçar","Úlcera","Balde","Pólvora","Irrigar","Microfone","Acordeão","Polegada",
-"Talismã","Naftalina","Parquímetro","Cova","Claustrofobia","Contrabando","Acne","Excursão","Órbita","Transpirar","Gotejamento","Felicidade","Impressora","Imaginação","Medalhas","Braça",
+var palavras = ["","","Universidade","Forquilha","Insurreição","Paralelepípedo","Maçã","Enfeitiçar","Úlcera","","Pólvora","Irrigar","Microfone","Acordeão","Polegada",
+"Talismã","Naftalina","Parquímetro","","Claustrofobia","Contrabando","","Excursão","Órbita","Transpirar","Gotejamento","","Impressora","Imaginação","Medalhas","Braça",
 "Tripulação","Passos","Rocha","Estádio","Claustrofobia","Combustível","Crustáceo","Trança","Tímido","Balões","Esponja","Parquímetro","Afrouxar","Anão","Tráfego","Molécula","Lixeira",
-"Jantar","Taxidermia","Escrever","Dobrável","Balão","Romance","Cotovelo","Transpirar","Quero","Sorriso","Múmia","Vagabundo","Marcador","Maremoto","Veneza","Pântano","Clava","Presunto",
+"","Taxidermia","","Dobrável","Balão","Romance","Cotovelo","Transpirar","","Sorriso","Múmia","Vagabundo","Marcador","Maremoto","Veneza","Pântano","","Presunto",
 "Astrônomo","Unicórnio","Aspirador","Minissaia","Gôndola","Mostarda","Incomodar","Pérolas","Leopardo","Beisebol","Armazém","Âncora","Assobio","Percussão"];
 
+var palavrasFáceis = ["comer","queijo","laranja","frango","toalha","quatro","urso","balde","cova","acne","felicidade","toalha","pintor","cama","dados","rio","orelha","comida",
+"espada","pia","estudante","chuva","lobo","capacete","casa","livro","cabelo","saco","ruim","cachos","barba","pelicano","teto","fino","pele","parede","doce","menina",
+"menino","ouvido","cachorro","papelada","janela","piada","triste","hoje","Clava","Escrever","Quero","Jantar","que","ok","sim","pois","tenho","carteira","luz","quadro",
+"foto","branco","preto","azul","verde","macaco","peixe","portugal","ruiva","fazer","barata","aranha","elefante","cubo","contole","carta","tomada","eu","sou","caipira",
+"senhora","apareceu","escura","terra","vida","pai","sorte","nunca","pinga","amor","madeira","pedra","pote","ar","letra","palavra","tv","desenho","corda","borboleta"];
 
-window.onload = function GerarPalavra(wordId) {
 
-$('#PalavraCima').html(palavras[GerarNumeroAleatorio(palavras.length - 1)]);
-$('#PalavraMeio').html(palavras[GerarNumeroAleatorio(palavras.length - 1)]);
-$('#PalavraBaixo').html(palavras[GerarNumeroAleatorio(palavras.length - 1)]);
+//inicializa palavras do jogo
+window.onload = function GerarPalavra() {
+	playMuisc();
+	$('#PalavraCima').html(palavrasFáceis[GerarNumeroAleatorio(palavrasFáceis.length - 1)]);
+	$('#PalavraMeio').html(palavrasFáceis[GerarNumeroAleatorio(palavrasFáceis.length - 1)]);
+	$('#PalavraBaixo').html(palavrasFáceis[GerarNumeroAleatorio(palavrasFáceis.length - 1)]);
 }
 
 function GerarNumeroAleatorio(tamanhoArray) {
@@ -19,35 +26,33 @@ function GerarNumeroAleatorio(tamanhoArray) {
 		return numeroGerado;	
 }
 
-function RandomWord() {
-var requestStr = "https://setgetgo.com/randomword/get.php";
-
-$.ajax({
-	type: "GET",
-	url: requestStr,
-	dataType: "jsonp",
-	success: RandomWordComplete
-});
+/*MÚSICAS*/
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+        this.sound.play();
+    }
+    this.stop = function(){
+        this.sound.pause();
+    }
 }
 
-function RandomWordComplete(data) {
-console.log(data.Word);
+var backgroundMusic;
+
+function playMuisc() {
+		backgroundMusic = new sound("js/background.mp3");
+    	backgroundMusic.play();
 }
-
-RandomWord();
-
-/*mantem sempre o foco no input*/
-$(document).ready(function() {
-
-    $("input").focusout(function(){
-    	$('#wordSubmit').focus();
-    });
-
-});
-
-var score = 0
+/*MÚSICAS END*/
 
 /*FUNÇÃO MAIN DO JOGO*/
+var score = 0
+var multiplicadorDificuldade =1
 /*função para pegar, verificar, e apagar a palavra digitada */
 $(document).keypress(function(e) {
     if(e.which == 13) {   
@@ -84,7 +89,7 @@ $(document).keypress(function(e) {
 
 /*APAGA PALAVRA*/
 function eraseWord (wordId) {
-	score = score + (10 * multiplicadorDificuldade);
+	score = score + (10 *multiplicadorDificuldade);
 	$("#" + wordId).html('');	
 }
 /*APAGA PALAVRA END*/
@@ -103,7 +108,7 @@ function addWord (wordId, animationClass){
 
 	$("#" + wordId).removeClass(animationClass).addClass(animationClass);	
 	$("#" + wordId).stop(true);
-	$("#" + wordId).html(palavras[GerarNumeroAleatorio(palavras.length - 1)]); 
+	$("#" + wordId).html(palavrasFáceis[GerarNumeroAleatorio(palavrasFáceis.length - 1)]); 
 }
 /*ADCIONA PALAVRA END*/
 
@@ -115,56 +120,20 @@ function updateScore () {
 /*PLACAR END*/
 
 
-/*COLISÃO*/
-//função de colisão entre divs
-function collision($span, $div1) {
-  var x1 = $span.offset().left;
-  var y1 = $span.offset().top;
-  var h1 = $span.outerHeight(true);
-  var w1 = $span.outerWidth(true);
-  var b1 = y1 + h1;
-  var r1 = x1 + w1;
-  var x2 = $div1.offset().left;
-  var y2 = $div1.offset().top;
-  var h2 = $div1.outerHeight(true);
-  var w2 = $div1.outerWidth(true);
-  var b2 = y2 + h2;
-  var r2 = x2 + w2;
-    
-  if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) 
-  	{
-  		return false;
-  	}
-  	else
-  	{
-  		return true;		
-  	}  
+/*PLACAR FINAL*/
+function updateFinalScore () {
+    $("#score-result-final").html('');	
+	$("#score-result-final").html(" " + score);
 }
-//evento que checa se as divs colidirão
-window.setInterval(function() {
-	if(collision($('#PalavraCima'), $('#chegada')) || collision($('#PalavraMeio'), $('#chegada')) || collision($('#PalavraBaixo'), $('#chegada')))
-	{
-		//pausa a animanimação
-		$('.words1').css('animation-play-state','paused');
-	    $('.words2').css('animation-play-state','paused');
-	    $('.words3').css('animation-play-state','paused');
-
-	    //remove da tela do usuário
-	    $('.words1').css('display','none');
-	    $('.words2').css('display','none');
-	    $('.words3').css('display','none');
-	}
-}, 200);
-/*COLISÃO END*/
+/*PLACAR FINAL END*/
 
 
+/*OPÇÕES*/
 var opcoes = null;
 
 function init_options()
 {
-
     var retrievedObject = localStorage.getItem('opcoes');
-
 
     console.log("valor " + retrievedObject);
     console.log('retrievedObject: ', JSON.parse(retrievedObject));
@@ -187,10 +156,7 @@ function init_options()
 }
 
 function getOpcoes() {
-
     localStorage.setItem('opcoes', JSON.stringify(opcoes));
-
-
 }
 
 function velocidade_facil() {
@@ -219,8 +185,6 @@ function dificuldade_facil() {
     opcoes.dificuldade = "Facil";
     opcoes.multiplicadorDificuldade = 1;
     highlight_dificuldade();
-
-
     getOpcoes();
 }
 
@@ -229,7 +193,6 @@ function dificuldade_medio() {
     opcoes.dificuldade = "Medio";
     opcoes.multiplicadorDificuldade = 2;
     highlight_dificuldade();
-
     getOpcoes();
 }
 
@@ -238,7 +201,6 @@ function dificuldade_dificil() {
     opcoes.dificuldade = "Dificil";
     opcoes.multiplicadorDificuldade = 3;
     highlight_dificuldade();
-
     getOpcoes();
 }
 
@@ -268,24 +230,22 @@ function highlight_dificuldade() {
     var array_values = Object.values(opcoes);
     switch (array_values[1]) {
         case "Facil":
-            $('#dificuldade_facil').css('color', 'red')
-            $('#dificuldade_medio').css('color', '#fff')
-            $('#dificuldade_dificil').css('color', '#fff')
+            $('#dificuldade_facil_span').css('display', 'inline-block');
+            $('#dificuldade_media_span').css('display', 'none');
+            $('#dificuldade_dificil_span').css('display', 'none');
 
         break;
 
         case "Medio":
-            $('#dificuldade_facil').css('color', '#fff')
-            $('#dificuldade_medio').css('color', 'red')
-            $('#dificuldade_dificil').css('color', '#fff')
-
+            $('#dificuldade_facil_span').css('display', 'none');
+            $('#dificuldade_media_span').css('display', 'inline-block');
+            $('#dificuldade_dificil_span').css('display', 'none');
         break;
 
         case "Dificil":
-            $('#dificuldade_facil').css('color', '#fff')
-            $('#dificuldade_medio').css('color', '#fff')
-            $('#dificuldade_dificil').css('color', 'red')
-
+       		$('#dificuldade_facil_span').css('display', 'none');
+            $('#dificuldade_media_span').css('display', 'none');
+        	$('#dificuldade_dificil_span').css('display', 'inline-block');
         break;
 
         default:
@@ -298,24 +258,22 @@ function highlight_velocidade() {
     var array_values = Object.values(opcoes);
     switch (array_values[0]) {
         case 15:
-            $('#velocidade_facil').css('color', 'red')
-            $('#velocidade_medio').css('color', '#fff')
-            $('#velocidade_dificil').css('color', '#fff')
-
+            $('#velocidade_facil_span').css('display', 'inline-block');
+        	$('#velocidade_media_span').css('display', 'none');
+        	$('#velocidade_rapida_span').css('display', 'none');
         break;
 
         case 10:
-            $('#velocidade_facil').css('color', '#fff')
-            $('#velocidade_medio').css('color', 'red')
-            $('#velocidade_dificil').css('color', '#fff')
-
+        	$('#velocidade_facil_span').css('display', 'none');
+        	$('#velocidade_media_span').css('display', 'inline-block');
+        	$('#velocidade_rapida_span').css('display', 'none');
         break;
 
         case 5:
-            $('#velocidade_facil').css('color', '#fff')
-            $('#velocidade_medio').css('color', '#fff')
-            $('#velocidade_dificil').css('color', 'red')
-
+            $('#velocidade_facil_span').css('display', 'none');
+        	$('#velocidade_media_span').css('display', 'none');
+        	$('#velocidade_rapida_span').css('display', 'inline-block');
+            
         break;
 
         default:
@@ -328,23 +286,23 @@ function highlight_frequencia() {
     var array_values = Object.values(opcoes);
     switch (array_values[3]) {
         case 5:
-            $('#frequencia_facil').css('color', 'red')
-            $('#frequencia_medio').css('color', '#fff')
-            $('#frequencia_dificil').css('color', '#fff')
+            $('#frequencia_poucas_span').css('display', 'inline-block');
+            $('#frequencia_normal_span').css('display', 'none');
+            $('#frequencia_muitas_span').css('display', 'none');
 
         break;
 
         case 10:
-            $('#frequencia_facil').css('color', '#fff')
-            $('#frequencia_medio').css('color', 'red')
-            $('#frequencia_dificil').css('color', '#fff')
+           $('#frequencia_poucas_span').css('display', 'none');
+            $('#frequencia_normal_span').css('display', 'inline-block');
+            $('#frequencia_muitas_span').css('display', 'none');
 
         break;
 
         case 15:
-            $('#frequencia_facil').css('color', '#fff')
-            $('#frequencia_medio').css('color', '#fff')
-            $('#frequencia_dificil').css('color', 'red')
+            $('#frequencia_poucas_span').css('display', 'none');
+            $('#frequencia_normal_span').css('display', 'none');
+            $('#frequencia_muitas_span').css('display', 'inline-block');
 
         break;
 
@@ -356,8 +314,10 @@ function highlight_frequencia() {
 
 function set_options()
 {
+	playMuisc();
     init_options();
     highlight_dificuldade();
     highlight_velocidade();
     highlight_frequencia();
 }
+/*OPÇÕES END*/

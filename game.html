@@ -12,7 +12,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://use.fontawesome.com/525e823077.js"></script>
   <script src="js/main.script.js"></script> 
+   <script src="js/game.js"></script> 
+
 </head>
 
   <body>
@@ -57,13 +60,29 @@
 	        		<input type="text" name="word-submit" id="wordSubmit" autofocus="autofocus">  
 	        	</div>
 	        </div>
+
+	       	<!-- Fim de Jogo -->
 	        <div class="row">
-	        	<div class="col-md-4 offset-md-4" id="end-game">
-	        		<span> GAME OVER </span>
-	        		<br/><br/>
-	        		<span> Seu Placar Final Foi: </span>
-	        		<span id="score-result"></span>
-                    <a id="jogar"  class="play-again-button"  href="game.html">jogar</a>
+	        	<div class="col-md-4 offset-md-4" id="end-game" style="display: none;">
+		        	<div class="row">
+		        		<div class="col-md-12">
+		        			<span> GAME OVER </span>
+			        		<br/><br/>
+			        		<span> Seu Placar Final Foi: </span>
+			        		<span id="score-result-final"></span>
+			        		<br/><br/>
+		        		</div>
+		        	</div>
+		        	<div class="row">
+		        		<div class="col-md-3"></div><!-- gambeta -->
+		        		<div class="col-md-3">
+		        			<a id="jogar"  class="play-again-button"  href="game.html"><i class="fa fa-repeat" aria-hidden="true"></i></a>
+		        		</div>
+		        		<div class="col-md-3">
+		        			<a id="jogar"  class="play-again-button"  href="menu.html"><i class="fa fa-arrow-left" aria-hidden="true"></i>	</a>
+		        		</div>
+		        		<div class="col-md-3"></div><!-- gambeta -->
+		        	</div>	        		                                       
 	        	</div>	
 	        </div>
 	        
