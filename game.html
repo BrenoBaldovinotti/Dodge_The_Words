@@ -18,7 +18,8 @@
   <body>
     <div id="animatedBackground">
 	    <div class="game-container">
-	    	<div class="row">
+	    	<!-- Score -->
+	    	<div class="row score">
 	    		<div class="col-offset-11 col-md -1">
 		    		<div id="score">
 		    			<label class="score-lable">
@@ -27,25 +28,28 @@
 		    		</div>	    			
 	    		</div>
 	    	</div>
+			<!-- Palavras -->
+			<div class="wordsRow">
+				<div class="row">
+		          <div class="col-md-12">
+		           		<span class="words words1" id="PalavraCima" onload="GerarPalavra('PalavraCima')"> </span>
+		          </div>
+		        </div>
 
-	    	<div class="row">
-	          <div class="col-md-12">
-	           		<span class="words" id="PalavraCima">ok</span>
-	          </div>
-	        </div>
+		        <div class="row">
+		          <div class="col-md-12">
+		           		<span class=" words words2" id="PalavraMeio" onload="GerarPalavra('PalavraMeio')"> </span>
+		          </div>
+		        </div>
 
-	        <div class="row">
-	          <div class="col-md-12">
-	           		<span class="words" id="PalavraMeio">Oi</span>
-	          </div>
-	        </div>
+		        <div class="row">
+		          <div class="col-md-12">
+		           		<span class=" words words3" id="PalavraBaixo" onload="GerarPalavra('PalavraBaixo')"></span>
+		          </div>
+	        	</div>
+			</div>
 
-	        <div class="row">
-	          <div class="col-md-12">
-	           		<span class="words" id="PalavraBaixo">Hey</span>
-	          </div>
-	        </div>
-
+			<!-- Campo texto -->
 	        <div class="row">
 	        	<div class="col-md-12" id="text-box">
 	        		<input type="text" name="word-submit" id="wordSubmit" autofocus="autofocus">       
