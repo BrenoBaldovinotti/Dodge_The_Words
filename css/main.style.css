@@ -2,6 +2,7 @@
 @import url("animate.css");
 body {
   background:lightblue;
+  overflow: hidden;
 }
 
 * {
@@ -55,6 +56,22 @@ input[type="text"]
   border-radius: 10px;
 }
 
+.play-again-button {
+  display:block;
+  height: 5em;
+  width: 5em;
+  border-radius: 50%;
+  font-size: 1em;
+  text-align: center;
+  text-decoration: none;
+  margin: 0.5em 0;
+  padding: 0.2em 0;
+  background-image: url("../imgs/plank.jpg");
+  color: #fff;
+  text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+  box-shadow: 3px 3px 3px #666666;
+}
+
 .menu-button:hover {
   text-decoration: none;
 }
@@ -82,6 +99,13 @@ input[type="text"]
   height: 100%
 }
 
+#chegada{
+  position: absolute;
+  width: 1%;
+  height: 100%;
+  z-index: 10000;
+}
+
 .words {
   font-size:  10em;
   position: relative;
@@ -94,11 +118,11 @@ input[type="text"]
 }
 
 .words2 {
-  animation: rtl1 12s infinite;
+  animation: rtl1 122s infinite;
 }
 
 .words3 {
-  animation: rtl1 8s infinite;
+  animation: rtl1 82s infinite;
 }
 
 #wordSubmit {
@@ -125,6 +149,22 @@ input[type="text"]
   height: 85px 
 }
 
+#end-game {
+    top: 50%;
+    width:100%;
+    height:21em;
+    margin-top: -12em; /*set to a negative number 1/2 of your height*/
+    border: 1px solid #ccc;
+    position:fixed;
+    text-align: center;
+}
+
+#end-game span {
+  font-size: 2em;
+}
+
+
+
 #animatedBackground {
   width: 100%;
   height: 100%;
@@ -149,10 +189,11 @@ input[type="text"]
 
 @keyframes rtl1 {
   from {
-    right: 0;
+    right: -40%;
   }
 
   to {
-    right: 93%;
+    right: 100%;
   }
 }
+

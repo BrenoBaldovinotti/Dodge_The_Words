@@ -1,74 +1,9 @@
 
-var palavras = ["Quatro","Urso","Universidade","Forquilha","Insurreição","Paralelepípedo","Maçã","Enfeitiçar","Úlcera","Balde","Pólvora",
-"Irrigar",
-"Microfone",
-"Acordeão",
-"Polegada",
-"Talismã",
-"Naftalina",
-"Parquímetro",
-"Cova",
-"Claustrofobia",
-"Contrabando",
-"Acne",
-"Excursão",
-"Órbita",
-"Transpirar",
-"Gotejamento",
-"Felicidade",
-"Impressora",
-"Imaginação",
-"Medalhas",
-"Braça",
-"Tripulação",
-"Passos",
-"Rocha",
-"Estádio",
-"Claustrofobia",
-"Combustível",
-"Crustáceo",
-"Trança",
-"Tímido",
-"Balões",
-"Esponja",
-"Parquímetro",
-"Afrouxar",
-"Anão",
-"Tráfego",
-"Molécula",
-"Lixeira",
-"Jantar",
-"Taxidermia",
-"Escrever",
-"Dobrável",
-"Balão",
-"Romance",
-"Cotovelo",
-"Transpirar",
-"Quero",
-"Sorriso",
-"Múmia",
-"Vagabundo",
-"Marcador",
-"Maremoto",
-"Veneza",
-"Pântano",
-"Clava",
-"Presunto",
-"Astrônomo",
-"Unicórnio",
-"Aspirador",
-"Minissaia",
-"Gôndola",
-"Mostarda",
-"Incomodar",
-"Pérolas",
-"Leopardo",
-"Beisebol",
-"Armazém",
-"Âncora",
-"Assobio",
-"Percussão"];
+var palavras = ["Quatro","Urso","Universidade","Forquilha","Insurreição","Paralelepípedo","Maçã","Enfeitiçar","Úlcera","Balde","Pólvora","Irrigar","Microfone","Acordeão","Polegada",
+"Talismã","Naftalina","Parquímetro","Cova","Claustrofobia","Contrabando","Acne","Excursão","Órbita","Transpirar","Gotejamento","Felicidade","Impressora","Imaginação","Medalhas","Braça",
+"Tripulação","Passos","Rocha","Estádio","Claustrofobia","Combustível","Crustáceo","Trança","Tímido","Balões","Esponja","Parquímetro","Afrouxar","Anão","Tráfego","Molécula","Lixeira",
+"Jantar","Taxidermia","Escrever","Dobrável","Balão","Romance","Cotovelo","Transpirar","Quero","Sorriso","Múmia","Vagabundo","Marcador","Maremoto","Veneza","Pântano","Clava","Presunto",
+"Astrônomo","Unicórnio","Aspirador","Minissaia","Gôndola","Mostarda","Incomodar","Pérolas","Leopardo","Beisebol","Armazém","Âncora","Assobio","Percussão"];
 
 
 window.onload = function GerarPalavra(wordId) {
@@ -111,8 +46,8 @@ $(document).ready(function() {
 });
 
 var score = 0
-var multiplicadorDificuldade = 1
 
+/*FUNÇÃO MAIN DO JOGO*/
 /*função para pegar, verificar, e apagar a palavra digitada */
 $(document).keypress(function(e) {
     if(e.which == 13) {   
@@ -145,29 +80,82 @@ $(document).keypress(function(e) {
         $('#wordSubmit').val('');
     }
 });
+/*FUNÇÃO MAIN DO JOGO END*/
 
+/*APAGA PALAVRA*/
 function eraseWord (wordId) {
 	score = score + (10 * multiplicadorDificuldade);
 	$("#" + wordId).html('');	
 }
+/*APAGA PALAVRA END*/
 
+
+/*ADCIONA PALAVRA*/
 function addWord (wordId, animationClass){
 	      	      
 	var el = $("#" + wordId),  
 	newone = el.clone(true);
 	el.before(newone);
 	        
-	$("." + el.attr("class") + ":last").remove();
+	$("." + el.attr("class") ).remove();
+	var lae = $("." + el.attr("class") + ":last");
+	console.log(lae);
 
 	$("#" + wordId).removeClass(animationClass).addClass(animationClass);	
 	$("#" + wordId).stop(true);
 	$("#" + wordId).html(palavras[GerarNumeroAleatorio(palavras.length - 1)]); 
 }
+/*ADCIONA PALAVRA END*/
 
+/*PLACAR*/
 function updateScore () {
     $("#score-result").html('');	
 	$("#score-result").html(" " + score);
 }
+/*PLACAR END*/
+
+
+/*COLISÃO*/
+//função de colisão entre divs
+function collision($span, $div1) {
+  var x1 = $span.offset().left;
+  var y1 = $span.offset().top;
+  var h1 = $span.outerHeight(true);
+  var w1 = $span.outerWidth(true);
+  var b1 = y1 + h1;
+  var r1 = x1 + w1;
+  var x2 = $div1.offset().left;
+  var y2 = $div1.offset().top;
+  var h2 = $div1.outerHeight(true);
+  var w2 = $div1.outerWidth(true);
+  var b2 = y2 + h2;
+  var r2 = x2 + w2;
+    
+  if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) 
+  	{
+  		return false;
+  	}
+  	else
+  	{
+  		return true;		
+  	}  
+}
+//evento que checa se as divs colidirão
+window.setInterval(function() {
+	if(collision($('#PalavraCima'), $('#chegada')) || collision($('#PalavraMeio'), $('#chegada')) || collision($('#PalavraBaixo'), $('#chegada')))
+	{
+		//pausa a animanimação
+		$('.words1').css('animation-play-state','paused');
+	    $('.words2').css('animation-play-state','paused');
+	    $('.words3').css('animation-play-state','paused');
+
+	    //remove da tela do usuário
+	    $('.words1').css('display','none');
+	    $('.words2').css('display','none');
+	    $('.words3').css('display','none');
+	}
+}, 200);
+/*COLISÃO END*/
 
 
 var opcoes = null;

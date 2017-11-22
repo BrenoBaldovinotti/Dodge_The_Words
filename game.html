@@ -18,6 +18,8 @@
   <body>
     <div id="animatedBackground">
 	    <div class="game-container">
+	    	<!-- Div Chegada -->
+	    	<div id="chegada"> </div>
 	    	<!-- Score -->
 	    	<div class="row score">
 	    		<div class="col-offset-11 col-md -1">
@@ -32,19 +34,19 @@
 			<div class="wordsRow">
 				<div class="row">
 		          <div class="col-md-12">
-		           		<span class="words words1" id="PalavraCima" onload="GerarPalavra('PalavraCima')"> </span>
+		           		<span class="words words1" id="PalavraCima"> </span>
 		          </div>
 		        </div>
 
 		        <div class="row">
 		          <div class="col-md-12">
-		           		<span class=" words words2" id="PalavraMeio" onload="GerarPalavra('PalavraMeio')"> </span>
+		           		<span class="words words2" id="PalavraMeio"> </span>
 		          </div>
 		        </div>
 
 		        <div class="row">
 		          <div class="col-md-12">
-		           		<span class=" words words3" id="PalavraBaixo" onload="GerarPalavra('PalavraBaixo')"></span>
+		           		<span class="words words3" id="PalavraBaixo"></span>
 		          </div>
 	        	</div>
 			</div>
@@ -52,10 +54,19 @@
 			<!-- Campo texto -->
 	        <div class="row">
 	        	<div class="col-md-12" id="text-box">
-	        		<input type="text" name="word-submit" id="wordSubmit" autofocus="autofocus">       
+	        		<input type="text" name="word-submit" id="wordSubmit" autofocus="autofocus">  
 	        	</div>
 	        </div>
-
+	        <div class="row">
+	        	<div class="col-md-4 offset-md-4" id="end-game">
+	        		<span> GAME OVER </span>
+	        		<br/><br/>
+	        		<span> Seu Placar Final Foi: </span>
+	        		<span id="score-result"></span>
+                    <a id="jogar"  class="play-again-button"  href="game.html">jogar</a>
+	        	</div>	
+	        </div>
+	        
 	    </div>        
     </div>    
   </body>
