@@ -13,6 +13,11 @@ body {
   user-select: none;
 }
 
+input[type="text"]
+{
+    font-family: 'Rye', cursive;
+}
+
 .container {
     position: relative;
     top: 15%;
@@ -68,8 +73,36 @@ body {
   height: 0; 
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent; 
-  
   border-right:10px solid blue; 
+}
+
+.game-container {
+  text-align: right;
+}
+
+.words {
+  font-size:  4em;
+  white-space: nowrap;
+  -webkit-animation: rightToLeft 15s linear;
+}
+
+#wordSubmit {
+  box-sizing: border-box;
+  width: 103%;
+  height: 2em;
+  background: transparent; 
+  font-size: 4em;
+}
+
+#text-box {
+  position: absolute;
+  bottom: 0;
+}
+
+.score-lable {
+  border-style: dashed;
+  border-color: #000;
+  font-size: 3em; 
 }
 
 #animatedBackground {
@@ -83,6 +116,13 @@ body {
   background-position: 0 0;
   background-size: auto 100%;
   animation: animatedBackground 500s linear infinite;
+}
+
+@-webkit-keyframes rightToLeft {
+    0%   {margin-right:0;}
+    25%   {margin-right:25%;}
+    50%  {margin-right:50%;}
+    100% {margin-right:100%;}
 }
 
 @keyframes animatedBackground {
