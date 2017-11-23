@@ -32,21 +32,21 @@ window.onload = function GerarPalavra() {
     document.getElementById('PalavraMeio').style.animationDuration= parsedObject.velocidade;
     document.getElementById('PalavraBaixo').style.animationDuration= parsedObject.velocidade;
 
-    if(parsedObject.dificuldade = "Facil")
+    if(parsedObject.dificuldade == "Facil")
     {
         $('#PalavraCima').html(palavrasFáceis[GerarNumeroAleatorio(palavrasFáceis.length - 1)]);
         $('#PalavraMeio').html(palavrasFáceis[GerarNumeroAleatorio(palavrasFáceis.length - 1)]);
         $('#PalavraBaixo').html(palavrasFáceis[GerarNumeroAleatorio(palavrasFáceis.length - 1)])
     }
 
-    if(parsedObject.dificuldade = "Medio")
+    if(parsedObject.dificuldade == "Medio")
     {
         $('#PalavraCima').html(palavras[GerarNumeroAleatorio(palavras.length - 1)]);
         $('#PalavraMeio').html(palavras[GerarNumeroAleatorio(palavras.length - 1)]);
         $('#PalavraBaixo').html(palavras[GerarNumeroAleatorio(palavras.length - 1)])
     }
 
-    if(parsedObject.dificuldade = "Dificil")
+    if(parsedObject.dificuldade == "Dificil")
     {
         $('#PalavraCima').html(palavrasDificeis[GerarNumeroAleatorio(palavrasDificeis.length - 1)]);
         $('#PalavraMeio').html(palavrasDificeis[GerarNumeroAleatorio(palavrasDificeis.length - 1)]);
@@ -123,7 +123,14 @@ $(document).keypress(function(e) {
 
 /*APAGA PALAVRA*/
 function eraseWord (wordId) {
-	score = score + (10 *multiplicadorDificuldade);
+    var retrievedObject = localStorage.getItem('opcoes');
+    var parsedObject = JSON.parse(retrievedObject);
+    console.log('retrievedObject: ', parsedObject.velocidade);
+    document.getElementById('PalavraCima').style.animationDuration= parsedObject.velocidade;
+    document.getElementById('PalavraMeio').style.animationDuration= parsedObject.velocidade;
+    document.getElementById('PalavraBaixo').style.animationDuration= parsedObject.velocidade;
+
+	score = score + (10 *parsedObject.multiplicadorDificuldade);
 	$("#" + wordId).html('');	
 }
 /*APAGA PALAVRA END*/
@@ -152,17 +159,17 @@ function addWord (wordId, animationClass){
     document.getElementById('PalavraBaixo').style.animationDuration= parsedObject.velocidade;
 
 
-    if(parsedObject.dificuldade = "Facil")
+    if(parsedObject.dificuldade == "Facil")
     {
         $("#" + wordId).html(palavrasFáceis[GerarNumeroAleatorio(palavrasFáceis.length - 1)]); 
     }
 
-    if(parsedObject.dificuldade = "Medio")
+    if(parsedObject.dificuldade == "Medio")
     {
         $("#" + wordId).html(palavras[GerarNumeroAleatorio(palavras.length - 1)]); 
     }
 
-    if(parsedObject.dificuldade = "Dificil")
+    if(parsedObject.dificuldade == "Dificil")
     {
         $("#" + wordId).html(palavrasDificeis[GerarNumeroAleatorio(palavrasDificeis.length - 1)]); 
     }
@@ -204,7 +211,7 @@ function init_options()
     } else {
         console.log("NULL!!! ");
         opcoes = {
-            velocidade:15, 
+            velocidade:"15s", 
             dificuldade:"Facil", 
             multiplicadorDificuldade:1,
         };
@@ -218,21 +225,21 @@ function getOpcoes() {
 
 function velocidade_facil() {
 
-    opcoes.velocidade = 15;
+    opcoes.velocidade = "15s";
     highlight_velocidade();
     getOpcoes();
 }
 
 function velocidade_medio() {
 
-    opcoes.velocidade = 10;
+    opcoes.velocidade = "10s";
     highlight_velocidade();
     getOpcoes();
 }
 
 function velocidade_dificil() {
 
-    opcoes.velocidade = 5;
+    opcoes.velocidade = "5s";
     highlight_velocidade();
     getOpcoes();
 }

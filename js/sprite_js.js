@@ -26,16 +26,16 @@
 
 (function () {
 			
-	var coin,
-		coinImage,
+	var sprite_model,
+	sprite_model_image,
 		canvas;					
 
 	function gameLoop () {
 	
 	  window.requestAnimationFrame(gameLoop);
 
-	  coin.update();
-	  coin.render();
+	  sprite_model.update();
+	  sprite_model.render();
 	}
 	
 	function sprite (options) {
@@ -87,26 +87,26 @@
 	}
 	
 	// Get canvas
-	canvas = document.getElementById("coinAnimation");
+	canvas = document.getElementById("sprite_modelAnimation");
 	canvas.width = 500;
 	canvas.height = 500;
 	
 	// Create sprite sheet
-	coinImage = new Image();	
+	sprite_model_image = new Image();	
 	
 	// Create sprite
-	coin = sprite({
+	sprite_model = sprite({
 		context: canvas.getContext("2d"),
 		width: 4240,
 		height: 507,
-		image: coinImage,
+		image: sprite_model_image,
 		numberOfFrames: 10,
 		ticksPerFrame: 6
 	});
 	
 	// Load sprite sheet
-	coinImage.addEventListener("load", gameLoop);
-	coinImage.src = "images/Sprite_Run.png";
+	sprite_model_image.addEventListener("load", gameLoop);
+	sprite_model_image.src = "images/Sprite_Run.png";
 
 } ());
 
