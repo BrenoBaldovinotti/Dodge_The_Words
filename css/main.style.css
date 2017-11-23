@@ -216,3 +216,10 @@ input[type="text"]
     right: 100%;
   }
 }
+
+
+@media only screen and (max-height: 1500px) {
+  .buttons-box{
+    top: 10%;
+  }
+}
