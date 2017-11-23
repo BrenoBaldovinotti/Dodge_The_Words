@@ -44,6 +44,8 @@ window.setInterval(function() {
 	    $('.words1').css('display','none');
 	    $('.words2').css('display','none');
 	    $('.words3').css('display','none');
+      $('.spirte-row').css('display','none');
+      $('.dead-spirte-row').css('display','block');
 
 	    //atualiza o placar final
 	    $("#end-game").removeAttr('style');

@@ -208,7 +208,8 @@ input[type="text"]
 
 
 
-.spirte-row{
+.spirte-row,
+.dead-spirte-row{
   position: absolute;
   bottom: 0px;
 }
