@@ -81,6 +81,7 @@ var backgroundMusic;
 function playMuisc() {
 		backgroundMusic = new sound("js/background.mp3");
     	backgroundMusic.play();
+        set_options();
 }
 /*MÚSICAS END*/
 
