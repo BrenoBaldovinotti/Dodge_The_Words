@@ -72,6 +72,12 @@ input[type="text"]
   box-shadow: 3px 3px 3px #666666;
 }
 
+.spirte-row,
+.dead-spirte-row{
+  position: absolute;
+  bottom: 0px;
+}
+
 #velocidade_facil, #velocidade_medio, #velocidade_dificil, 
 #dificuldade_facil, #dificuldade_medio, #dificuldade_dificil,
 #frequencia_facil, #frequencia_medio, #frequencia_dificil {
@@ -81,6 +87,7 @@ input[type="text"]
 
 .menu-button:hover {
   text-decoration: none;
+  color: #fff;
 }
 
 
@@ -114,22 +121,22 @@ input[type="text"]
 }
 
 .words {
-  font-size:  10em;
+  font-size:  6em;
   position: relative;
   white-space: nowrap;
   height: auto; 
 }
 
 .words1 {
-  animation: rtl1 20s infinite;
+  animation: rtl1 120s infinite;
  }
 
 .words2 {
-  animation: rtl1 20s infinite;
+  animation: rtl1 120s infinite;
 }
 
 .words3 {
-  animation: rtl1 20s infinite;
+  animation: rtl1 120s infinite;
 }
 
 #wordSubmit {
@@ -138,6 +145,10 @@ input[type="text"]
   height: 2em;
   background: transparent; 
   font-size: 4em;
+}
+
+.word-container {
+  padding: 30px 15px 30px 15px;
 }
 
 #text-box {
@@ -204,12 +215,4 @@ input[type="text"]
   to {
     right: 100%;
   }
-}
-
-
-
-.spirte-row,
-.dead-spirte-row{
-  position: absolute;
-  bottom: 0px;
 }
