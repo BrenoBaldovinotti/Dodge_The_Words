@@ -11,6 +11,13 @@ var palavrasFáceis = ["comer","queijo","laranja","frango","toalha","quatro","ur
 "foto","branco","preto","azul","verde","macaco","peixe","portugal","ruiva","fazer","barata","aranha","elefante","cubo","contole","carta","tomada","eu","sou","caipira",
 "senhora","apareceu","escura","terra","vida","pai","sorte","nunca","pinga","amor","madeira","pedra","pote","ar","letra","palavra","tv","desenho","corda","borboleta"];
 
+var palavrasDificeis = ["Admoesta","Alarido","Alcunha","Âmago","Ardiloso","Arroubo","Balbúrdia","Belicoso","Besugo","Curra","Dilapidar","Dândi","Engodar","Fenecimento","Fugaz",
+"Fleumático","Frugal","Homizio","Ígneo","Ignóbil","ImplÍcito","Insolente","Irrupção","Incólume","Inócuo","Jaez","Janota","Justapor","Pacóvio","Parco","Pedante","Perdulário","Pernóstico",
+"Pândego","Sumidade","Taciturno","Tênue","Veneta","Pândego"];
+
+var palavrasIngles = ["dependent","gray","joyous","spicy","educated","glass","observant","lunch","nasty","pies","four","object","mourn","bloody","phobic","hall","helpless","plug",
+"credit","silk","entertaining","post","quiet","heat","periodic","amusement","tart","offer","uppity","past","drown","bare","insurance","wonderful","recognise","applaud","numberless",
+"way","ultra","things"];
 
 //inicializa palavras do jogo
 window.onload = function GerarPalavra() {
