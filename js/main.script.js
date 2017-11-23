@@ -22,9 +22,36 @@ var palavrasIngles = ["dependent","gray","joyous","spicy","educated","glass","ob
 //inicializa palavras do jogo
 window.onload = function GerarPalavra() {
 	playMuisc();
-	$('#PalavraCima').html(palavrasFáceis[GerarNumeroAleatorio(palavrasFáceis.length - 1)]);
-	$('#PalavraMeio').html(palavrasFáceis[GerarNumeroAleatorio(palavrasFáceis.length - 1)]);
-	$('#PalavraBaixo').html(palavrasFáceis[GerarNumeroAleatorio(palavrasFáceis.length - 1)]);
+    //seta velocidade do jogo
+    var retrievedObject = localStorage.getItem('opcoes');
+    var parsedObject = JSON.parse(retrievedObject);
+    console.log('retrievedObject.velocidade: ', parsedObject.velocidade);
+    console.log('retrievedObject.dificuldade: ', parsedObject.dificuldade);
+
+    document.getElementById('PalavraCima').style.animationDuration= parsedObject.velocidade;
+    document.getElementById('PalavraMeio').style.animationDuration= parsedObject.velocidade;
+    document.getElementById('PalavraBaixo').style.animationDuration= parsedObject.velocidade;
+
+    if(parsedObject.dificuldade = "Facil")
+    {
+        $('#PalavraCima').html(palavrasFáceis[GerarNumeroAleatorio(palavrasFáceis.length - 1)]);
+        $('#PalavraMeio').html(palavrasFáceis[GerarNumeroAleatorio(palavrasFáceis.length - 1)]);
+        $('#PalavraBaixo').html(palavrasFáceis[GerarNumeroAleatorio(palavrasFáceis.length - 1)])
+    }
+
+    if(parsedObject.dificuldade = "Medio")
+    {
+        $('#PalavraCima').html(palavras[GerarNumeroAleatorio(palavras.length - 1)]);
+        $('#PalavraMeio').html(palavras[GerarNumeroAleatorio(palavras.length - 1)]);
+        $('#PalavraBaixo').html(palavras[GerarNumeroAleatorio(palavras.length - 1)])
+    }
+
+    if(parsedObject.dificuldade = "Dificil")
+    {
+        $('#PalavraCima').html(palavrasDificeis[GerarNumeroAleatorio(palavrasDificeis.length - 1)]);
+        $('#PalavraMeio').html(palavrasDificeis[GerarNumeroAleatorio(palavrasDificeis.length - 1)]);
+        $('#PalavraBaixo').html(palavrasDificeis[GerarNumeroAleatorio(palavrasDificeis.length - 1)]);
+    }
 }
 
 function GerarNumeroAleatorio(tamanhoArray) {
@@ -115,7 +142,31 @@ function addWord (wordId, animationClass){
 
 	$("#" + wordId).removeClass(animationClass).addClass(animationClass);	
 	$("#" + wordId).stop(true);
-	$("#" + wordId).html(palavrasFáceis[GerarNumeroAleatorio(palavrasFáceis.length - 1)]); 
+
+
+    var retrievedObject = localStorage.getItem('opcoes');
+    var parsedObject = JSON.parse(retrievedObject);
+    console.log('retrievedObject: ', parsedObject.velocidade);
+    document.getElementById('PalavraCima').style.animationDuration= parsedObject.velocidade;
+    document.getElementById('PalavraMeio').style.animationDuration= parsedObject.velocidade;
+    document.getElementById('PalavraBaixo').style.animationDuration= parsedObject.velocidade;
+
+
+    if(parsedObject.dificuldade = "Facil")
+    {
+        $("#" + wordId).html(palavrasFáceis[GerarNumeroAleatorio(palavrasFáceis.length - 1)]); 
+    }
+
+    if(parsedObject.dificuldade = "Medio")
+    {
+        $("#" + wordId).html(palavras[GerarNumeroAleatorio(palavras.length - 1)]); 
+    }
+
+    if(parsedObject.dificuldade = "Dificil")
+    {
+        $("#" + wordId).html(palavrasDificeis[GerarNumeroAleatorio(palavrasDificeis.length - 1)]); 
+    }
+	
 }
 /*ADCIONA PALAVRA END*/
 
@@ -156,7 +207,6 @@ function init_options()
             velocidade:15, 
             dificuldade:"Facil", 
             multiplicadorDificuldade:1,
-            frequencia:5,
         };
         localStorage.setItem('opcoes', JSON.stringify(opcoes));
     }
@@ -211,27 +261,6 @@ function dificuldade_dificil() {
     getOpcoes();
 }
 
-function frequencia_facil() {
-
-    opcoes.frequencia = 5;
-    highlight_frequencia();
-    getOpcoes();
-}
-
-function frequencia_medio() {
-
-    opcoes.frequencia = 10;
-    highlight_frequencia();
-    getOpcoes();
-}
-
-function frequencia_dificil() {
-
-    opcoes.frequencia = 15;
-    highlight_frequencia();
-    getOpcoes();
-}
-
 function highlight_dificuldade() {
 
     var array_values = Object.values(opcoes);
@@ -264,67 +293,34 @@ function highlight_velocidade() {
 
     var array_values = Object.values(opcoes);
     switch (array_values[0]) {
-        case 15:
+        case "15s":
             $('#velocidade_facil_span').css('display', 'inline-block');
-        	$('#velocidade_media_span').css('display', 'none');
-        	$('#velocidade_rapida_span').css('display', 'none');
+            $('#velocidade_media_span').css('display', 'none');
+            $('#velocidade_rapida_span').css('display', 'none');
         break;
 
-        case 10:
-        	$('#velocidade_facil_span').css('display', 'none');
-        	$('#velocidade_media_span').css('display', 'inline-block');
-        	$('#velocidade_rapida_span').css('display', 'none');
-        break;
-
-        case 5:
+        case "10s":
             $('#velocidade_facil_span').css('display', 'none');
-        	$('#velocidade_media_span').css('display', 'none');
-        	$('#velocidade_rapida_span').css('display', 'inline-block');
-            
+            $('#velocidade_media_span').css('display', 'inline-block');
+            $('#velocidade_rapida_span').css('display', 'none');
         break;
 
-        default:
-            break;
-    }
-}
-
-function highlight_frequencia() {
-
-    var array_values = Object.values(opcoes);
-    switch (array_values[3]) {
-        case 5:
-            $('#frequencia_poucas_span').css('display', 'inline-block');
-            $('#frequencia_normal_span').css('display', 'none');
-            $('#frequencia_muitas_span').css('display', 'none');
-
-        break;
-
-        case 10:
-           $('#frequencia_poucas_span').css('display', 'none');
-            $('#frequencia_normal_span').css('display', 'inline-block');
-            $('#frequencia_muitas_span').css('display', 'none');
-
-        break;
-
-        case 15:
-            $('#frequencia_poucas_span').css('display', 'none');
-            $('#frequencia_normal_span').css('display', 'none');
-            $('#frequencia_muitas_span').css('display', 'inline-block');
+        case "5s":
+            $('#velocidade_facil_span').css('display', 'none');
+            $('#velocidade_media_span').css('display', 'none');
+            $('#velocidade_rapida_span').css('display', 'inline-block');
 
         break;
 
         default:
             break;
     }
-
 }
 
 function set_options()
 {
-	playMuisc();
     init_options();
     highlight_dificuldade();
     highlight_velocidade();
-    highlight_frequencia();
 }
 /*OPÇÕES END*/

@@ -128,15 +128,15 @@ input[type="text"]
 }
 
 .words1 {
-  animation: rtl1 120s infinite;
+  animation: rtl1 13s infinite;
  }
 
 .words2 {
-  animation: rtl1 120s infinite;
+  animation: rtl1 14s infinite;
 }
 
 .words3 {
-  animation: rtl1 120s infinite;
+  animation: rtl1 15s infinite;
 }
 
 #wordSubmit {
@@ -221,5 +221,9 @@ input[type="text"]
 @media only screen and (max-height: 1500px) {
   .buttons-box{
     top: 10%;
+  }
+
+  .words {
+    font-size: 4em;
   }
 }
